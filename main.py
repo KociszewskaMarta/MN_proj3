@@ -48,7 +48,7 @@ def analyze_node_distribution(route, file_path, num_nodes=10):
         file_path (str): Path to the data file for naming purposes.
         num_nodes (int): Number of nodes to use for interpolation.
     """
-    distributions = ["uniform","chebyshev", "logarithmic", "random"]
+    distributions = ["uniform","chebyshev", "random"]
     
     for dist in distributions:
         plot_interpolation(route, num_nodes=num_nodes, file_path=file_path, node_distribution=dist)
@@ -73,11 +73,11 @@ if __name__ == "__main__":
 
     # Load route data
     route_SpacerniakGdansk = extract_data('profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
-    route_WielkiKanionKolorado = extract_data('profile_wysokosciowe/2018_paths/WielkiKanionKolorado.csv')
     route_MountEverest = extract_data('profile_wysokosciowe/2018_paths/MountEverest.csv')
     route_genoa_rapallo = extract_data('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
-    route_ulm_lugano = extract_data('profile_wysokosciowe/2018_paths/ulm_lugano.txt')
 
 
     analyze_route(route_SpacerniakGdansk, file_path='profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    analyze_route(route_MountEverest, file_path='profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_route(route_genoa_rapallo, file_path='profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
