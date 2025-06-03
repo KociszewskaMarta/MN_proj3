@@ -42,3 +42,10 @@ def plot_text(file_path):
     plt.legend()
     plt.savefig(save_path)
     plt.show()
+
+if __name__ == "__main__":
+    plot_csv('profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    plot_csv('profile_wysokosciowe/2018_paths/WielkiKanionKolorado.csv')
+    plot_csv('profile_wysokosciowe/2018_paths/MountEverest.csv')
+    plot_text('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    plot_text('profile_wysokosciowe/2018_paths/ulm_lugano.txt')
