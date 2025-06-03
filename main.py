@@ -39,7 +39,7 @@ def ensure_directory_exists(directory_path):
         os.makedirs(directory_path)
 
 
-def analyze_node_distribution(route, file_path, num_nodes=10):
+def analyze_node_distribution(route, file_path, num_nodes=15):
     """
     Analyze the effect of different node distributions on interpolation.
     
@@ -53,17 +53,18 @@ def analyze_node_distribution(route, file_path, num_nodes=10):
     for dist in distributions:
         plot_interpolation(route, num_nodes=num_nodes, file_path=file_path, node_distribution=dist)
 
-def analyze_route(route, file_path):
+def analyze_num_nodes(route, file_path):
     """
-    Analyze a route by plotting its elevation profile.
+    Analyze a route by plotting its elevation profile using different numbers of nodes.
 
     Args:
         route (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
         file_path (str): Path to the data file for naming purposes.
     """
-    analyze_node_distribution(route,file_path, num_nodes=5)
-    analyze_node_distribution(route, file_path, num_nodes=10)
-    analyze_node_distribution(route, file_path, num_nodes=15)
+    plot_interpolation(route, num_nodes=5, file_path=file_path)
+    plot_interpolation(route, num_nodes=10, file_path=file_path)
+    plot_interpolation(route, num_nodes=15, file_path=file_path)
+    plot_interpolation(route, num_nodes=20, file_path=file_path)
 
 
 if __name__ == "__main__":
@@ -76,8 +77,11 @@ if __name__ == "__main__":
     route_MountEverest = extract_data('profile_wysokosciowe/2018_paths/MountEverest.csv')
     route_genoa_rapallo = extract_data('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
+    analyze_node_distribution(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    analyze_num_nodes(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
 
-    analyze_route(route_SpacerniakGdansk, file_path='profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
-    analyze_route(route_MountEverest, file_path='profile_wysokosciowe/2018_paths/MountEverest.csv')
-    analyze_route(route_genoa_rapallo, file_path='profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_node_distribution(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_num_nodes(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
 
+    analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_num_nodes(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
