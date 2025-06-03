@@ -97,6 +97,10 @@ def plot_interpolation(data_points, num_nodes, file_path, node_distribution="uni
     x_true = [p[0] for p in data_points]
     y_true = [p[1] for p in data_points]
 
+    y_min, y_max = min(y_true), max(y_true)
+    y_range = y_max - y_min
+    y_clip = (y_min - y_range, y_max + y_range)
+
     # Plot true data
     plt.figure(figsize=(12, 8))
     plt.plot(x_true, y_true, label='True Data', color='blue')
@@ -115,6 +119,7 @@ def plot_interpolation(data_points, num_nodes, file_path, node_distribution="uni
     plt.title(f'True Data vs Lagrange Interpolation ({node_distribution} nodes) for {file_name}')
     plt.legend()
     plt.grid()
+    plt.ylim(y_clip)
     plt.savefig(save_path)
     plt.close()  # Close the figure to avoid displaying it in interactive mode
 
