@@ -61,10 +61,10 @@ def analyze_num_nodes(route, file_path):
         route (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
         file_path (str): Path to the data file for naming purposes.
     """
-    plot_interpolation(route, num_nodes=5, file_path=file_path)
     plot_interpolation(route, num_nodes=10, file_path=file_path)
-    plot_interpolation(route, num_nodes=15, file_path=file_path)
     plot_interpolation(route, num_nodes=20, file_path=file_path)
+    plot_interpolation(route, num_nodes=30, file_path=file_path)
+    plot_interpolation(route, num_nodes=40, file_path=file_path)
 
 
 if __name__ == "__main__":
