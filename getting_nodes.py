@@ -61,19 +61,3 @@ def get_nodes_chebyshev(data_points, num_nodes):
         indices.sort()
 
     return [data_points[i] for i in indices]
-
-
-def get_nodes_random(data_points, num_nodes):
-    """
-    Select interpolation nodes randomly.
-
-    Args:
-        data_points (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
-        num_nodes (int): Number of interpolation nodes to use.
-
-    Returns:
-        list of tuples: Selected interpolation nodes.
-    """
-    max_idx = len(data_points) - 1
-    indices = sorted(random.sample(range(max_idx + 1), min(num_nodes, max_idx + 1)))
-    return [data_points[i] for i in indices]

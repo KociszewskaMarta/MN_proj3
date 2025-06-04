@@ -3,7 +3,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-from getting_nodes import get_nodes_uniform, get_nodes_chebyshev, get_nodes_random
+from getting_nodes import get_nodes_uniform, get_nodes_chebyshev
 
 def normalize_to_interval(x, interval):
     """
@@ -78,8 +78,6 @@ def plot_interpolation(data_points, num_nodes, file_path, node_distribution="uni
         interpolation_nodes = get_nodes_uniform(data_points, num_nodes)
     elif node_distribution == "chebyshev":
         interpolation_nodes = get_nodes_chebyshev(data_points, num_nodes)
-    elif node_distribution == "random":
-        interpolation_nodes = get_nodes_random(data_points, num_nodes)
     else:
         raise ValueError(f"Unsupported node distribution: {node_distribution}")
 

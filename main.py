@@ -48,7 +48,7 @@ def analyze_node_distribution(route, file_path, num_nodes=15):
         file_path (str): Path to the data file for naming purposes.
         num_nodes (int): Number of nodes to use for interpolation.
     """
-    distributions = ["uniform","chebyshev", "random"]
+    distributions = ["uniform","chebyshev"]
     
     for dist in distributions:
         plot_interpolation(route, num_nodes=num_nodes, file_path=file_path, node_distribution=dist)
@@ -61,10 +61,10 @@ def analyze_num_nodes(route, file_path):
         route (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
         file_path (str): Path to the data file for naming purposes.
     """
-    plot_interpolation(route, num_nodes=10, file_path=file_path)
-    plot_interpolation(route, num_nodes=20, file_path=file_path)
-    plot_interpolation(route, num_nodes=30, file_path=file_path)
-    plot_interpolation(route, num_nodes=40, file_path=file_path)
+    plot_interpolation(route, num_nodes=10, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=20, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=30, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=40, file_path=file_path, node_distribution="chebyshev")
 
 
 if __name__ == "__main__":
@@ -85,3 +85,5 @@ if __name__ == "__main__":
 
     analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
     analyze_num_nodes(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+
+    plot_interpolation(route_SpacerniakGdansk, num_nodes=30, file_path='profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', node_distribution="uniform")
