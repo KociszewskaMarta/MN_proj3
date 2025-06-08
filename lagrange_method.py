@@ -100,7 +100,7 @@ def plot_interpolation(data_points, num_nodes, file_path, node_distribution="uni
     y_clip = (y_min - y_range, y_max + y_range)
 
     # Plot true data
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 6))
     plt.plot(x_true, y_true, label='True Data', color='blue')
 
     # Plot interpolated data

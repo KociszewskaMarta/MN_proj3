@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Function to plot data from a CSV file, skipping the first row
-def plot_csv(file_path):
+def plot_csv(file_path, figsize=(12, 8)):
     # Read the CSV file, skipping the first row
     data = pd.read_csv(file_path, header=None, skiprows=1)
 
@@ -15,6 +15,7 @@ def plot_csv(file_path):
     save_path = os.path.join('plots/plot_elevation', f'{file_name}.png')
 
     # Plot the data
+    plt.figure(figsize=figsize)
     plt.plot(x, y, label='Elevation Profile')
     plt.xlabel('Distance')
     plt.ylabel('Elevation')
@@ -23,7 +24,7 @@ def plot_csv(file_path):
     plt.savefig(save_path)
     plt.show()
 
-def plot_text(file_path):
+def plot_text(file_path, figsize=(10, 6)):
     # Read the text file, skipping the first row
     data = pd.read_csv(file_path, header=None, skiprows=1, delim_whitespace=True)
 
@@ -35,6 +36,7 @@ def plot_text(file_path):
     save_path = os.path.join('plots/plot_elevation',f'{file_name}.png')
 
     # Plot the data
+    plt.figure(figsize=figsize)
     plt.plot(x, y, label='Elevation Profile')
     plt.xlabel('Distance')
     plt.ylabel('Elevation')
