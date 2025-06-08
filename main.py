@@ -64,8 +64,11 @@ def analyze_num_nodes(route, file_path):
     """
     plot_interpolation(route, num_nodes=10, file_path=file_path, node_distribution="chebyshev")
     plot_interpolation(route, num_nodes=20, file_path=file_path, node_distribution="chebyshev")
-    plot_interpolation(route, num_nodes=30, file_path=file_path, node_distribution="chebyshev")
     plot_interpolation(route, num_nodes=40, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=60, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=80, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation(route, num_nodes=100, file_path=file_path, node_distribution="chebyshev")
+
 
 
 if __name__ == "__main__":
