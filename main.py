@@ -1,4 +1,5 @@
 from lagrange_method import plot_interpolation
+from plotting import plot_csv, plot_text
 import os
 
 def extract_data(file_path):
@@ -71,6 +72,11 @@ if __name__ == "__main__":
     # Ensure directories exist
     ensure_directory_exists('plots/plot_lagrange')
     ensure_directory_exists('plots/plot_elevation')
+
+    # Load and plot elevation profiles from CSV files
+    plot_csv('profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    plot_csv('profile_wysokosciowe/2018_paths/MountEverest.csv')
+    plot_text('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
     # Load route data
     route_SpacerniakGdansk = extract_data('profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
