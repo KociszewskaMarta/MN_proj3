@@ -87,12 +87,14 @@ if __name__ == "__main__":
     route_genoa_rapallo = extract_data('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
     analyze_node_distribution(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    analyze_node_distribution(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', num_nodes=30)
     analyze_num_nodes(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
 
     analyze_node_distribution(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_node_distribution(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv', num_nodes=30)
     analyze_num_nodes(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
 
     analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt', num_nodes=30)
     analyze_num_nodes(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
-    plot_interpolation(route_SpacerniakGdansk, num_nodes=30, file_path='profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', node_distribution="uniform")
