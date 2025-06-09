@@ -106,7 +106,8 @@ Wyniki interpolacji dla różnych rozmieszczeń węzłów interpolacyjnych przed
 
 | Rozmieszczenie równomierne                                                                                                                        | Rozmieszczenie Chebysheva                                                                                                                          |
 |---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=15_uniform.png) | ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie Chebysheva](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=15_chebyshev.png) | |                                                                                                                                                    |
+| ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=15_uniform.png) | ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie Chebysheva](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=15_chebyshev.png) | |   
+| ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=30_uniform.png) | ![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie Chebysheva](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=30_chebyshev.png) |
 
 Węzły rozmieszczone równomiernie:
 
@@ -123,6 +124,7 @@ Mimo że interpolacja nie oddaje wszystkich drobnych detali, zwłaszcza na płas
 | Rozmieszczenie równomierne                                                                                                                | Rozmieszczenie Chebysheva                                                                                                                  |
 |-------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | ![Wykresy interpolacji Lagrange’a - Mount Everest, rozmieszczenie równomierne](plots/plot_lagrange/MountEverest.csv_nodes=15_uniform.png) | ![Wykresy interpolacji Lagrange’a - Mount Everest, rozmieszczenie Chebysheva](plots/plot_lagrange/MountEverest.csv_nodes=15_chebyshev.png) |
+| ![Wykresy interpolacji Lagrange’a - Mount Everest, rozmieszczenie równomierne](plots/plot_lagrange/MountEverest.csv_nodes=30_uniform.png) | ![Wykresy interpolacji Lagrange’a - Mount Everest, rozmieszczenie Chebysheva](plots/plot_lagrange/MountEverest.csv_nodes=30_chebyshev.png) |
 
 Węzły rozmieszczone równomiernie:
 
@@ -138,6 +140,7 @@ Krzywa interpolacyjna bardzo dokładnie odwzorowuje profil wysokości. Jest gła
 | Rozmieszczenie równomierne                                                                                                                 | Rozmieszczenie Chebysheva                                                                                                                   |
 |--------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | ![Wykresy interpolacji Lagrange’a - Genoa Rapallo, rozmieszczenie równomierne](plots/plot_lagrange/genoa_rapallo.txt_nodes=15_uniform.png) | ![Wykresy interpolacji Lagrange’a - Genoa Rapallo, rozmieszczenie Chebysheva](plots/plot_lagrange/genoa_rapallo.txt_nodes=15_chebyshev.png) |
+| ![Wykresy interpolacji Lagrange’a - Genoa Rapallo, rozmieszczenie równomierne](plots/plot_lagrange/genoa_rapallo.txt_nodes=30_uniform.png) | ![Wykresy interpolacji Lagrange’a - Genoa Rapallo, rozmieszczenie Chebysheva](plots/plot_lagrange/genoa_rapallo.txt_nodes=30_chebyshev.png) |
 
 Węzły rozmieszczone równomiernie:
 
@@ -155,7 +158,7 @@ w rozsądnych granicach wartości prawdziwych danych. Nie widać ekstremalnych o
 
 \newpage
 
-## 3.2 Wnioski z analizy rozmieszczenia węzłów interpolacyjnych
+### Wnioski z analizy rozmieszczenia węzłów interpolacyjnych
 
 Analiza wykazała, że rozmieszczenie węzłów interpolacyjnych ma istotny wpływ na dokładność interpolacji.
 W przypadku rozmieszczenia równomiernego, interpolacja może prowadzić do dużych błędów, zwłaszcza w obszarach o dużych wartościach pochodnych funkcji.
@@ -165,17 +168,7 @@ Występuje _efekt Rungego_, który polega na tym, że w przypadku rozmieszczenia
 Na krańcach przedziału występują duże oscylacje, co prowadzi do znacznych błędów. 
 Rozmieszczenie Chebysheva pozwala na zminimalizowanie tego efektu, co jest szczególnie widoczne w przypadku funkcji o dużych wartościach pochodnych.
 
-Poniższy wykres ilustruje _efekt Rungego_, gdzie widać duże oscylacje na krańcach przedziału przy równomiernym rozmieszczeniu węzłów interpolacyjnych.
-
-![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=30_uniform.png)
-
-Dla porównania, poniżej przedstawiono wykresy interpolacji z rozmieszczeniem Chebysheva, które nie wykazuje tego efektu:
-
-![Wykresy interpolacji Lagrange’a - spacerniak Gdańsk, rozmieszczenie Chebysheva](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=30_chebyshev.png)
-
-\newpage
-
-## 3.3 Analiza wpływu liczby węzłów interpolacyjnych
+## 3.2 Analiza wpływu liczby węzłów interpolacyjnych
 
 Analiza została przeprowadzona dla różnych liczby węzłów interpolacyjnych - **10, 20, 40, 60, 80, 100**, w celu oceny wpływu liczby węzłów na dokładność interpolacji.
 Aby uzyskać lepsze wyniki, węzły interpolacyjne zostały rozmieszczone zgodnie z rozkładem Chebysheva. Dzięki temu możliwe było zminimalizowanie błędu interpolacji, 
@@ -186,14 +179,11 @@ interpolowanej z rzeczywistymi wartościami funkcji w punktach węzłów interpo
 
 ### Trasa 1 - spacerniak w Gdańsku
 
-| Liczba węzłów | Wykresy interpolacji Lagrange’a                                                                                              |
-|:-------------:|------------------------------------------------------------------------------------------------------------------------------|
-|      10       | ![Wykresy interpolacji Lagrange’a dla 10 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=10_chebyshev.png)  |
-|      20       | ![Wykresy interpolacji Lagrange’a dla 20 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=20_chebyshev.png)  |
-|      40       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=40_chebyshev.png)  |
-|      60       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=60_chebyshev.png)  |
-|      80       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=80_chebyshev.png)  |
-|      100      | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 1](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=100_chebyshev.png) |
+|                                                                               |                                                                                 |
+|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=20_chebyshev.png)   |
+| ![40 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=60_chebyshev.png)   |
+| ![80 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_lagrange/SpacerniakGdansk.csv_nodes=100_chebyshev.png) |
 
 **Wpływ liczby węzłów interpolacyjnych:**
 
@@ -221,14 +211,11 @@ Istnieje optymalna liczba węzłów dla interpolacji Lagrange'a. Zbyt mała licz
 
 ### Trasa 2 - Mount Everest
 
-| Liczba węzłów | Wykresy interpolacji Lagrange’a                                                                                          |
-|:-------------:|--------------------------------------------------------------------------------------------------------------------------|
-|      10       | ![Wykresy interpolacji Lagrange’a dla 10 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=10_chebyshev.png)  |
-|      20       | ![Wykresy interpolacji Lagrange’a dla 20 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=20_chebyshev.png)  |
-|      40       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=40_chebyshev.png)  |
-|      60       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=60_chebyshev.png)  |
-|      80       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=80_chebyshev.png)  |
-|      100      | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 2](plots/plot_lagrange/MountEverest.csv_nodes=100_chebyshev.png) |
+|                                                                           |                                                                             |
+|---------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=20_chebyshev.png)   |
+| ![40 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=60_chebyshev.png)   |
+| ![80 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_lagrange/MountEverest.csv_nodes=100_chebyshev.png) |
 
 
 **Wpływ liczby węzłów interpolacyjnych:**
@@ -260,14 +247,12 @@ Zbyt duża liczba węzłów, mimo że teoretycznie zwiększa stopień dopasowani
 
 ### Trasa 3 - Genoa Rapallo
 
-| Liczba węzłów | Wykresy interpolacji Lagrange’a                                                                                           |
-|:-------------:|---------------------------------------------------------------------------------------------------------------------------|
-|      10       | ![Wykresy interpolacji Lagrange’a dla 10 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=10_chebyshev.png)  |
-|      20       | ![Wykresy interpolacji Lagrange’a dla 20 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=20_chebyshev.png)  |
-|      40       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=40_chebyshev.png)  |
-|      60       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=60_chebyshev.png)  |
-|      80       | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=80_chebyshev.png)  |
-|      100      | ![Wykresy interpolacji Lagrange’a dla 40 węzłów - trasa 3](plots/plot_lagrange/genoa_rapallo.txt_nodes=100_chebyshev.png) |
+|                                                                            |                                                                              |
+|----------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=20_chebyshev.png)   |
+| ![40 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=60_chebyshev.png)   |
+| ![80 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_lagrange/genoa_rapallo.txt_nodes=100_chebyshev.png) |
+
 
 **Wpływ liczby węzłów interpolacyjnych:**
 
@@ -297,7 +282,7 @@ Optymalna liczba węzłów (ok. 60): Pozwala na bardzo dobre dopasowanie do dany
 Zbyt duża liczba węzłów (np. 80, 100): Powoduje poważne problemy ze stabilnością interpolacji na krańcach przedziału (zjawisko Rungego). Mimo że węzły Chebysheva pomagają w rozłożeniu błędu, przy tak nieregularnych danych i dużej liczbie węzłów, problem ten staje się dominujący, uniemożliwiając wiarygodne prognozowanie lub reprezentowanie danych w tych obszarach.
 Podsumowując, dla danych o wysokiej zmienności, znalezienie idealnej liczby węzłów jest kluczowe. Interpolacja Lagrange'a z węzłami Chebysheva jest skuteczna, ale ma swoje ograniczenia, zwłaszcza gdy dąży się do zbyt dużej dokładności poprzez zwiększanie stopnia wielomianu, co skutkuje niestabilnością na brzegach.
 
-## 3.4 Wnioski z analizy ilości węzłów interpolacyjnych
+### Wnioski z analizy ilości węzłów interpolacyjnych
 
 **Wpływ liczby węzłów:**
 
