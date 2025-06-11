@@ -45,6 +45,21 @@ gdzie:
  - $M_{n+1}$ to największa wartość $|f^{(n+1)}(x)|$ w przedziale $[a,b]$,
  - $\omega_n(x)$ to iloczyn $(x-x_0)(x-x_1)...(x-x_n)$.
 
+## 1.3 Interpolacja funkcji sklejanych trzeciego stopnia
+
+Interpolacja funkcji sklejanych trzeciego stopnia jest metodą, która pozwala na uzyskanie gładkiej funkcji interpolującej.
+Polega na podziale przedziału na mniejsze odcinki i dopasowaniu do każdego z nich wielomianu trzeciego stopnia, 
+który jest ciągły i ma ciągłe pochodne pierwszego i drugiego rzędu w punktach węzłów interpolacyjnych.
+
+Wielominay sklejane trzeciego stopnia mają postać:
+$$
+W_i(x) = a_i + b_i (x - x_i) + c_i (x - x_i)^2 + d_i (x - x_i)^3, \quad i = 0, 1, \ldots, n-1
+$$
+
+Metoda funkcji sklejanych pozwala na wyznaczenie współczynników $a_i$, $b_i$, $c_i$, $d_i$ dla każdego odcinka.
+
+
+
 ## 1.4 Wybór węzłów interpolacyjnych
 Wybór węzłów interpolacyjnych jest kluczowym elementem procesu interpolacji. Węzły powinny być rozmieszczone w taki sposób, aby zapewnić jak najlepsze odwzorowanie funkcji w danym przedziale.
 Przeanalizowano różne metody wyboru węzłów interpolacyjnych, takie jak:
@@ -76,12 +91,12 @@ Analiza interpolacji funkcji została przeprowadzona na podstawie danych, dla r�
 ![Trasa 1](plots/plot_elevation/SpacerniakGdansk.csv.png)
 Trasa prawie płaska, z niewielkimi wzniesieniami i spadkami.
 
+\newpage
+
 **Trasa 2 - Mount Everest**: 
 
 ![Trasa 2](plots/plot_elevation/MountEverest.csv.png)
 Trasa o jednym wyraźnym wzniesieniu.
-
-\newpage
 
 **Trasa 3 - Genoa Rapallo**: 
 
@@ -99,8 +114,6 @@ Analiza została przeprowadzona dla dwóch rodzajów rozmieszczenia węzłów in
 Celem było zbadanie, jak rozmieszczenie węzłów wpływa na dokładność interpolacji.
 
 Wyniki interpolacji dla różnych rozmieszczeń węzłów interpolacyjnych przedstawiono na wykresach, gdzie porównano wartości funkcji interpolowanej z rzeczywistymi wartościami funkcji w punktach węzłów interpolacyjnych.
-
-\newpage
 
 ### Trasa 1
 
@@ -155,8 +168,6 @@ Węzły Chebysheva:
 Krzywa interpolacyjna (czerwona przerywana linia) jest stosunkowo gładka i podąża za ogólnym trendem prawdziwych danych.
 Odchylenia od prawdziwych danych są zauważalne, zwłaszcza w obszarach gwałtownych zmian wysokości, ale interpolacja pozostaje 
 w rozsądnych granicach wartości prawdziwych danych. Nie widać ekstremalnych oscylacji.
-
-\newpage
 
 ### Wnioski z analizy rozmieszczenia węzłów interpolacyjnych
 
@@ -298,18 +309,180 @@ Podsumowując, dla danych o wysokiej zmienności, znalezienie idealnej liczby w�
 
 Podsumowując, optymalna liczba węzłów interpolacyjnych jest silnie zależna od charakterystyki danych, które mają być interpolowane. Dla bardzo nieregularnych danych, konieczne jest użycie większej liczby węzłów, podczas gdy dla gładkich danych mniejsza liczba węzłów jest często wystarczająca. Węzły Czebyszewa są dobrym wyborem, ponieważ minimalizują oscylacje, co jest szczególnie ważne przy interpolacji danych o dużej zmienności.
 
-# 4. Wnioski
-Na podstawie przeprowadzonej analizy interpolacji funkcji można sformułować następujące wnioski:
+# 4. Interpolacja funkcji sklejanych trzeciego stopnia
 
-- **Rozmieszczenie węzłów interpolacyjnych ma kluczowe znaczenie dla jakości interpolacji.** 
-  - Węzły rozmieszczone według rozkładu Czebyszewa pozwalają na znaczne ograniczenie błędów interpolacji i eliminację efektu Rungego, który pojawia się przy równomiernym rozmieszczeniu węzłów, zwłaszcza na krańcach przedziału.
+## 4.1 Analiza wpływu dystrybucji węzłów interpolacyjnych
 
-- **Liczba węzłów interpolacyjnych wpływa na dokładność aproksymacji.** 
-  - Zwiększanie liczby węzłów pozwala lepiej odwzorować szczegóły funkcji, jednak powyżej pewnego poziomu dalsze zwiększanie liczby węzłów nie przynosi już istotnej poprawy, szczególnie dla funkcji gładkich.
+Analiza została przeprowadzona dla dwóch rodzajów rozmieszczenia węzłów interpolacyjnych: **równomiernego**, **Chebysheva**. Celem było zbadanie, jak rozmieszczenie węzłów wpływa na dokładność interpolacji.
 
-- **Charakterystyka danych (profil trasy) determinuje optymalną liczbę węzłów.** 
-  - Dla tras o gładkim przebiegu (np. Mount Everest) już niewielka liczba węzłów zapewnia wysoką dokładność. Dla tras o dużej nieregularności (np. Genoa Rapallo) konieczne jest użycie większej liczby węzłów, aby uzyskać satysfakcjonujące dopasowanie.
+Wyniki interpolacji dla różnych rozmieszczeń węzłów interpolacyjnych przedstawiono na wykresach, gdzie porównano wartości funkcji interpolowanej z rzeczywistymi wartościami funkcji w punktach węzłów interpolacyjnych.
 
-- **Interpolacja wielomianowa Lagrange’a** jest skuteczna dla niewielkiej liczby węzłów i funkcji gładkich, jednak dla bardziej złożonych danych lub dużej liczby węzłów może prowadzić do oscylacji i błędów na krańcach przedziału.
+### Trasa 1 
 
-Podsumowując, dobór odpowiedniej liczby i rozmieszczenia węzłów interpolacyjnych jest kluczowy dla uzyskania dokładnej i stabilnej interpolacji. W praktyce zaleca się stosowanie węzłów Czebyszewa oraz dostosowanie liczby węzłów do charakterystyki interpolowanych danych.
+
+| Rozmieszczenie równomierne                                                                                                                                     | Rozmieszczenie Chebysheva                                                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Wykresy interpolacji funkcji sklejanych - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=15_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=15_chebyshev.png) |
+| ![Wykresy interpolacji funkcji sklejanych - spacerniak Gdańsk, rozmieszczenie równomierne](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=30_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - spacerniak Gdańsk, rozmieszczenie Chebysheva](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=30_chebyshev.png)  |
+
+### Trasa 2
+
+| Rozmieszczenie równomierne                                                                                                                             | Rozmieszczenie Chebysheva                                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Wykresy interpolacji funkcji sklejanych - Mount Everest, rozmieszczenie równomierne](plots/plot_spline/MountEverest.csv_spline_nodes=15_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - Mount Everest, rozmieszczenie Chebysheva](plots/plot_spline/MountEverest.csv_spline_nodes=15_chebyshev.png) |
+| ![Wykresy interpolacji funkcji sklejanych - Mount Everest, rozmieszczenie równomierne](plots/plot_spline/MountEverest.csv_spline_nodes=30_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - Mount Everest, rozmieszczenie Chebysheva](plots/plot_spline/MountEverest.csv_spline_nodes=30_chebyshev.png) |
+
+### Trasa 3
+
+| Rozmieszczenie równomierne                                                                                                                              | Rozmieszczenie Chebysheva                                                                                                                                |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Wykresy interpolacji funkcji sklejanych - Genoa Rapallo, rozmieszczenie równomierne](plots/plot_spline/genoa_rapallo.txt_spline_nodes=15_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - Genoa Rapallo, rozmieszczenie Chebysheva](plots/plot_spline/genoa_rapallo.txt_spline_nodes=15_chebyshev.png) |
+| ![Wykresy interpolacji funkcji sklejanych - Genoa Rapallo, rozmieszczenie równomierne](plots/plot_spline/genoa_rapallo.txt_spline_nodes=30_uniform.png) | ![Wykresy interpolacji funkcji sklejanych - Genoa Rapallo, rozmieszczenie Chebysheva](plots/plot_spline/genoa_rapallo.txt_spline_nodes=30_chebyshev.png) |
+
+### Wnioski z analizy rozmieszczenia węzłów interpolacyjnych
+
+Dla funkcji sklejanych trzeciego stopnia wpływ rozmieszczenia węzłów (jednostajne vs. Czebyszewa) 
+na jakość interpolacji jest zazwyczaj ograniczony, zwłaszcza w porównaniu do interpolacji wielomianowej wysokiego stopnia. 
+Splajny są z natury bardziej stabilne i mniej podatne na efekt Rungego. Niemniej jednak, w przypadku danych o dużej zmienności 
+lub nagłych zmianach, węzły Czebyszewa mogą nadal oferować nieco lepsze dopasowanie, szczególnie na krańcach przedziału, 
+dzięki lepszemu rozkładowi błędu. Dla gładkich funkcji różnice są minimalne.
+
+## 4.2 Analiza wpływu liczby węzłów interpolacyjnych
+
+Analiza została przeprowadzona dla tych samych liczby węzłów interpolacyjnych - **10, 20, 40, 60, 80, 100**, co pozwoliło 
+na ocenę wpływu liczby węzłów na dokładność interpolacji funkcji sklejanych trzeciego stopnia.
+Węzły interpolacyjne zostały rozmieszczone zgodnie z rozkładem Chebysheva.
+
+Wyniki interpolacji dla różnych liczby węzłów interpolacyjnych przedstawiono na wykresach, gdzie porównano wartości funkcji 
+interpolowanej z rzeczywistymi wartościami funkcji w punktach węzłów interpolacyjnych.
+
+### Trasa 1 - spacerniak w Gdańsku
+
+|                                                                                     |                                                                                    |
+|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=20_chebyshev.png) |
+| ![40 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=60_chebyshev.png) |
+| ![80 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_spline/SpacerniakGdansk.csv_spline_nodes=100_chebyshev.png) |
+
+**Wpływ liczby węzłów interpolacyjnych:**
+
+- Mała liczba węzłów (np. 10 węzłów):
+
+Interpolacja jest bardzo wygładzona i jedynie ogólnie odwzorowuje kształt "True Data".
+Występują znaczne odchylenia między krzywą interpolowaną (czerwona przerywana linia) a danymi rzeczywistymi (niebieska linia), zwłaszcza w obszarach o dużej zmienności, takich jak początek wykresu (okolice 0-500 jednostek odległości) oraz w okolicy 2500 jednostek odległości, gdzie czerwona linia nie podąża za lokalnymi szczytami i dolinami niebieskiej krzywej.
+
+- Zwiększenie liczby węzłów (np. 20, 30, 40, 60 węzłów):
+
+Wraz ze wzrostem liczby węzłów, krzywa interpolacji splajnem kubicznym staje się coraz dokładniejsza i lepiej dopasowuje się do danych rzeczywistych.
+Lokalne szczyty i doliny są znacznie lepiej odwzorowywane, a ogólne odchylenie od danych rzeczywistych maleje. Krzywa interpolowana zaczyna niemal idealnie pokrywać się z danymi rzeczywistymi w większości obszarów.
+Interpolacja jest bardziej elastyczna i skuteczniej uchwytuje szczegóły w przebiegu danych, zwłaszcza w obszarach, gdzie dane rzeczywiste mają większą zmienność.
+
+
+- Duża liczba węzłów (np. 80, 100 węzłów):
+
+Dopasowanie w całym zakresie danych staje się bardzo dobre. Krzywa interpolacji splajnem kubicznym niemal idealnie pokrywa się z danymi rzeczywistymi, nawet w miejscach o wysokiej zmienności.
+W przeciwieństwie do interpolacji wielomianowej wysokiego stopnia (gdzie często występuje zjawisko Rungego na krańcach przedziału, nawet przy węzłach Czebyszewa), interpolacja splajnem kubicznym charakteryzuje się znacznie większą stabilnością. Na przedstawionych wykresach, nawet przy 80 czy 100 węzłach, nie widać wyraźnych oscylacji ani niestabilności na krańcach przedziału.
+Oznacza to, że splajny kubiczne są znacznie bardziej odporne na problemy niestabilności związane z dużą liczbą węzłów, zapewniając płynne i dokładne dopasowanie w całym zakresie danych.
+
+Podsumowując:
+
+W przypadku interpolacji splajnem kubicznym z węzłami Czebyszewa, zwiększanie liczby węzłów konsekwentnie prowadzi do lepszego i dokładniejszego dopasowania do danych rzeczywistych. Nie obserwuje się problemów niestabilności (takich jak zjawisko Rungego), które są typowe dla interpolacji wielomianowej wysokiego stopnia. Im więcej węzłów, tym wierniejsze odwzorowanie szczegółów i lokalnych wahań danych, co czyni interpolację splajnem kubicznym z węzłami Czebyszewa bardzo solidnym narzędziem do aproksymacji danych.
+
+### Trasa 2 - Mount Everest
+
+|                                                                                     |                                                                                    |
+|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=20_chebyshev.png) |
+| ![40 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=60_chebyshev.png) |
+| ![80 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_spline/MountEverest.csv_spline_nodes=100_chebyshev.png) |
+
+**Wpływ liczby węzłów interpolacyjnych:**
+
+- Mała liczba węzłów (np. 10 węzłów):
+
+Interpolacja (czerwona przerywana linia) dobrze oddaje ogólny trend danych rzeczywistych (niebieska linia), ale jest wyraźnie bardziej wygładzona.
+Występują widoczne odchylenia, szczególnie w obszarze szczytu (okolice 2500-3000 jednostek odległości) oraz w miejscach, gdzie rzeczywiste dane mają większą krzywiznę. Interpolacja nie uchwytuje w pełni ostrych zmian nachylenia ani lokalnych, drobniejszych fluktuacji.
+
+- Zwiększenie liczby węzłów (np. 20, 30, 40, 60 węzłów):
+
+Wraz ze wzrostem liczby węzłów, krzywa interpolacji splajnem kubicznym staje się sukcesywnie dokładniejsza i coraz lepiej dopasowuje się do danych rzeczywistych.
+Odchylenia między krzywą interpolowaną a danymi rzeczywistymi maleją drastycznie. Krzywa interpolowana zaczyna niemal idealnie pokrywać się z danymi rzeczywistymi, nawet w obszarach o większej zmienności nachylenia.
+Widać, że interpolacja jest w stanie uchwycić więcej szczegółów i precyzyjniej odwzorować kształt "True Data".
+
+- Duża liczba węzłów (np. 80, 100 węzłów):
+
+Dopasowanie jest niemal perfekcyjne w całym zakresie danych. Krzywa interpolacji splajnem kubicznym praktycznie nakłada się na dane rzeczywiste, co oznacza, że model interpolacyjny bardzo wiernie odwzorowuje oryginalny profil wysokości.
+Podobnie jak w poprzedniej analizie, interpolacja splajnem kubicznym jest bardzo stabilna. Nie widać żadnych oznak niestabilności, takich jak oscylacje (zjawisko Rungego) na krańcach przedziału, nawet przy tak dużej liczbie węzłów. To potwierdza, że splajny kubiczne są robustne i nie "przeuczą się" w sposób, który prowadziłby do nielogicznych fluktuacji na granicach, co jest typowe dla interpolacji wielomianowej wysokiego stopnia.
+
+Podsumowując:
+
+Dla danych o profilu Mount Everestu, interpolacja splajnem kubicznym z węzłami Czebyszewa konsekwentnie poprawia swoją dokładność wraz ze wzrostem liczby węzłów. Metoda ta wykazuje wysoką stabilność, ponieważ nie prowadzi do problemów niestabilności (np. zjawiska Rungego), nawet przy bardzo dużej liczbie węzłów. Oznacza to, że dla danych o podobnym charakterze (gładkie, ale z pewnymi wyraźnymi wzniesieniami i spadkami), zwiększenie liczby węzłów Czebyszewa w interpolacji splajnem kubicznym jest skutecznym sposobem na osiągnięcie bardzo precyzyjnego dopasowania do danych rzeczywistych.
+
+### Trasa 3 - Genoa Rapallo
+
+|                                                                                     |                                                                                    |
+|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| ![10 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=10_chebyshev.png) | ![20 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=20_chebyshev.png) |
+| ![40 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=40_chebyshev.png) | ![60 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=60_chebyshev.png) |
+| ![80 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=80_chebyshev.png) | ![100 węzłów](plots/plot_spline/genoa_rapallo.txt_spline_nodes=100_chebyshev.png) |
+
+**Wpływ liczby węzłów interpolacyjnych:**
+
+- Mała liczba węzłów (np. 10 węzłów):
+
+Dla danych o profilu Mount Everestu, interpolacja splajnem kubicznym z węzłami Czebyszewa konsekwentnie poprawia swoją dokładność wraz ze wzrostem liczby węzłów. Metoda ta wykazuje wysoką stabilność, ponieważ nie prowadzi do problemów niestabilności (np. zjawiska Rungego), nawet przy bardzo dużej liczbie węzłów. Oznacza to, że dla danych o podobnym charakterze (gładkie, ale z pewnymi wyraźnymi wzniesieniami i spadkami), zwiększenie liczby węzłów Czebyszewa w interpolacji splajnem kubicznym jest skutecznym sposobem na osiągnięcie bardzo precyzyjnego dopasowania do danych rzeczywistych.
+
+- Zwiększenie liczby węzłów (np. 20, 30, 40, 60 węzłów):
+
+Wraz ze wzrostem liczby węzłów, krzywa interpolacji splajnem kubicznym staje się coraz dokładniejsza i znacznie lepiej dopasowuje się do danych rzeczywistych, które mają charakterystyczne, ostre piki i głębokie doliny.
+Na wykresach z 20, 40 i 60 węzłami widać stopniową poprawę w odwzorowaniu lokalnych ekstremów. Krzywa interpolowana zaczyna podążać za większością szczytów i dolin, choć wciąż może wygładzać najbardziej ostre z nich (np. przy 26000 i 30000 jednostek odległości na wykresie z 20 węzłami, gdzie interpolacja nie osiąga pełnej wysokości pików).
+W miarę zwiększania liczby węzłów, interpolacja jest bardziej elastyczna i potrafi uchwycić coraz więcej szczegółów w przebiegu danych.
+
+- Duża liczba węzłów (np. 80, 100 węzłów):
+
+Dopasowanie jest bardzo dokładne. Krzywa interpolacji splajnem kubicznym niemal idealnie pokrywa się z danymi rzeczywistymi, nawet w przypadku najbardziej gwałtownych i ostrych zmian wysokości. Lokalnie szczyty i doliny są odwzorowywane z dużą precyzją, a odchylenia od danych rzeczywistych są minimalne.
+Podobnie jak w poprzednich analizach, interpolacja splajnem kubicznym wykazuje dużą stabilność. Mimo dużej liczby węzłów i złożoności danych, nie obserwuje się zjawiska Rungego ani innych niestabilności na krańcach przedziału. Splajn skutecznie radzi sobie z wysoce zmiennymi danymi bez wprowadzania niepożądanych oscylacji.
+
+Podsumowując:
+
+Dla danych o wysokiej zmienności i licznych lokalnych ekstremach, takich jak profil trasy Genua-Rapallo, interpolacja splajnem kubicznym z węzłami Czebyszewa jest bardzo efektywna. Konieczne jest zastosowanie dużej liczby węzłów (np. 80 lub 100) w celu osiągnięcia bardzo precyzyjnego dopasowania i wiernego odwzorowania wszystkich szczegółów. Co ważne, metoda ta zachowuje stabilność nawet przy bardzo dużej liczbie węzłów, co jest jej kluczową zaletą w porównaniu z innymi metodami interpolacji, takimi jak interpolacja wielomianowa wysokiego stopnia, która często cierpi na niestabilność w takich warunkach.
+
+### Wnioski z analizy ilości węzłów interpolacyjnych
+
+**Wpływ liczby węzłów**
+
+- Zwiększanie liczby węzłów interpolacyjnych konsekwentnie prowadzi do zwiększenia dokładności aproksymacji danych we wszystkich analizowanych przypadkach. Im więcej punktów jest użytych do konstrukcji splajnu kubicznego, tym lepiej jest on w stanie uchwycić szczegóły i fluktuacje oryginalnej funkcji. Jest to szczególnie widoczne w przypadku danych o wysokiej zmienności.
+
+- Brak zjawiska Rungego i stabilność: Kluczową obserwacją we wszystkich przypadkach jest brak widocznego zjawiska Rungego (czyli gwałtownych oscylacji na krańcach przedziału) nawet przy bardzo dużej liczbie węzłów (np. 80 czy 100). Jest to znacząca zaleta interpolacji splajnem kubicznym w porównaniu do interpolacji wielomianowej wysokiego stopnia. Wykorzystanie węzłów Czebyszewa dodatkowo przyczynia się do tej stabilności, rozkładając węzły w sposób, który redukuje błędy na brzegach. Splajny kubiczne, dzięki swojej lokalnej naturze (każdy segment splajnu jest wielomianem niskiego stopnia), są znacznie bardziej odporne na niestabilności związane z dużą liczbą węzłów, zapewniając płynne i dobrze dopasowane krzywe w całym zakresie.
+
+**Wpływ rodzaju trasy (charakterystki danych)**
+
+- Trasy o wysokiej nieregularności i dużej liczbie ostrych zmian (np. "genoa_rapallo.txt" oraz w mniejszym stopniu "SpacerniakGdansk.csv"): Te dane charakteryzują się licznymi, gwałtownymi wzniesieniami i spadkami. Wymagają one znacznie większej liczby węzłów interpolacyjnych (np. 80-100), aby uzyskać akceptowalną, a nawet bardzo dobrą dokładność. Przy małej liczbie węzłów, interpolacja jest silnie wygładzona i słabo odwzorowuje szczegóły. Dopiero zwiększanie liczby węzłów pozwala na wierniejsze uchwycenie lokalnych ekstremów i złożoności profilu.
+
+- Trasy o gładkim i regularnym profilu (np. "MountEverest.csv"): Dane te są znacznie bardziej "gładkie" i mniej zmienne. Mogą być bardzo dobrze aproksymowane za pomocą stosunkowo niewielkiej liczby węzłów (np. 20-40). Dalsze zwiększanie liczby węzłów przynosi tylko marginalne korzyści w zakresie dokładności, ponieważ już przy mniejszej liczbie węzłów splajn prawie idealnie pokrywa się z danymi rzeczywistymi.
+
+Podsumowując, optymalna liczba węzłów interpolacyjnych jest silnie zależna od charakterystyki danych, które mają być interpolowane. Dla bardzo nieregularnych danych, konieczne jest użycie większej liczby węzłów, podczas gdy dla gładkich danych mniejsza liczba węzłów jest często wystarczająca. Węzły Czebyszewa są dobrym wyborem, ponieważ minimalizują oscylacje, co jest szczególnie ważne przy interpolacji danych o dużej zmienności.
+
+# 5. Wnioski
+
+W niniejszym raporcie przeprowadzono analizę porównawczą dwóch metod interpolacji: wielomianowej Lagrange'a oraz funkcji sklejanych trzeciego stopnia. Analiza została przeprowadzona na trzech różnych trasach, które charakteryzują się różnymi profilami wysokości.
+
+Wyniki analizy wykazały, że:
+
+1. **Interpolacja wielomianowa Lagrange'a**:
+   - Jest skuteczna w przypadku gładkich funkcji, takich jak profil Mount Everestu, gdzie niewielka liczba węzłów (np. 20-40) wystarcza do uzyskania bardzo dobrego dopasowania.
+   - W przypadku bardziej nieregularnych danych (np. Genua Rapallo), konieczne jest zwiększenie liczby węzłów do 80-100, aby uzyskać akceptowalną dokładność. Jednakże, przy tak dużej liczbie węzłów, pojawia się zjawisko Rungego, które prowadzi do niestabilności na krańcach przedziału interpolacji.
+   - Węzły Czebyszewa pomagają zminimalizować to zjawisko, ale nadal przy dużej liczbie węzłów problem ten może wystąpić.
+
+2. **Interpolacja funkcjami sklejanymi trzeciego stopnia**:
+   - Jest znacznie bardziej stabilna i odporna na problemy niestabilności, takie jak zjawisko Rungego, nawet przy dużej liczbie węzłów (np. 80-100).
+   - Umożliwia bardzo dokładne dopasowanie do danych rzeczywistych, nawet w przypadku danych o wysokiej zmienności, takich jak profil Genua Rapallo.
+   - Wykazuje lepsze dopasowanie do lokalnych ekstremów i fluktuacji profilu wysokości, co czyni ją bardziej elastyczną w porównaniu do interpolacji wielomianowej.
+
+3. **Wpływ liczby węzłów interpolacyjnych**:
+   - Zwiększanie liczby węzłów interpolacyjnych zazwyczaj prowadzi do zwiększenia dokładności aproksymacji danych. Im więcej punktów jest użytych do konstrukcji wielomianu interpolacyjnego lub splajnu, tym lepiej jest on w stanie uchwycić szczegóły i fluktuacje oryginalnej funkcji.
+   - Istnieje punkt nasycenia, powyżej którego dalsze zwiększanie liczby węzłów nie przynosi już widocznej poprawy dokładności, a w przypadku interpolacji wielomianowej może prowadzić do zjawiska Rungego.
+
+4. **Wpływ rozmieszczenia węzłów interpolacyjnych**:
+   - W przypadku funkcji sklejanych trzeciego stopnia, rozmieszczenie węzłów (jednostajne vs. Czebyszewa) ma mniejszy wpływ na jakość interpolacji w porównaniu do interpolacji wielomianowej. Splajny są z natury bardziej stabilne i mniej podatne na efekt Rungego.
+   - Węzły Czebyszewa mogą jednak oferować nieco lepsze dopasowanie, szczególnie na krańcach przedziału, dzięki lepszemu rozkładowi błędu.
