@@ -1,4 +1,5 @@
 from lagrange_method import plot_interpolation
+from spline_method import plot_interpolation_spline
 from plotting import plot_csv, plot_text
 import os
 
@@ -40,7 +41,7 @@ def ensure_directory_exists(directory_path):
         os.makedirs(directory_path)
 
 
-def analyze_node_distribution(route, file_path, num_nodes=15):
+def analyze_node_distribution_lagrange(route, file_path, num_nodes=15):
     """
     Analyze the effect of different node distributions on interpolation.
     
@@ -54,7 +55,7 @@ def analyze_node_distribution(route, file_path, num_nodes=15):
     for dist in distributions:
         plot_interpolation(route, num_nodes=num_nodes, file_path=file_path, node_distribution=dist)
 
-def analyze_num_nodes(route, file_path):
+def analyze_num_nodes_lagrange(route, file_path):
     """
     Analyze a route by plotting its elevation profile using different numbers of nodes.
 
@@ -69,7 +70,34 @@ def analyze_num_nodes(route, file_path):
     plot_interpolation(route, num_nodes=80, file_path=file_path, node_distribution="chebyshev")
     plot_interpolation(route, num_nodes=100, file_path=file_path, node_distribution="chebyshev")
 
+def analyze_node_distribution_spline(route, file_path, num_nodes=15):
+    """
+    Analyze the effect of different node distributions on cubic spline interpolation.
 
+    Args:
+        route (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
+        file_path (str): Path to the data file for naming purposes.
+        num_nodes (int): Number of nodes to use for interpolation.
+    """
+    distributions = ["uniform", "chebyshev"]
+
+    for dist in distributions:
+        plot_interpolation_spline(route, num_nodes=num_nodes, file_path=file_path, node_distribution=dist)
+
+def analyze_num_nodes_spline(route, file_path):
+    """
+    Analyze a route by plotting its elevation profile using different numbers of nodes with cubic spline interpolation.
+
+    Args:
+        route (list of tuples): List of data points [(x0, y0), (x1, y1), ...].
+        file_path (str): Path to the data file for naming purposes.
+    """
+    plot_interpolation_spline(route, num_nodes=10, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation_spline(route, num_nodes=20, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation_spline(route, num_nodes=40, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation_spline(route, num_nodes=60, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation_spline(route, num_nodes=80, file_path=file_path, node_distribution="chebyshev")
+    plot_interpolation_spline(route, num_nodes=100, file_path=file_path, node_distribution="chebyshev")
 
 if __name__ == "__main__":
     # Ensure directories exist
@@ -86,15 +114,29 @@ if __name__ == "__main__":
     route_MountEverest = extract_data('profile_wysokosciowe/2018_paths/MountEverest.csv')
     route_genoa_rapallo = extract_data('profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
-    analyze_node_distribution(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
-    analyze_node_distribution(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', num_nodes=30)
-    analyze_num_nodes(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    # Lagrange interpolation analysis
+    analyze_node_distribution_lagrange(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    analyze_node_distribution_lagrange(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', num_nodes=30)
+    analyze_num_nodes_lagrange(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
 
-    analyze_node_distribution(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
-    analyze_node_distribution(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv', num_nodes=30)
-    analyze_num_nodes(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_node_distribution_lagrange(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_node_distribution_lagrange(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv', num_nodes=30)
+    analyze_num_nodes_lagrange(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
 
-    analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
-    analyze_node_distribution(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt', num_nodes=30)
-    analyze_num_nodes(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_node_distribution_lagrange(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_node_distribution_lagrange(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt', num_nodes=30)
+    analyze_num_nodes_lagrange(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+
+    # Cubic spline interpolation analysis
+    analyze_node_distribution_spline(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+    analyze_node_distribution_spline(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv', num_nodes=30)
+    analyze_num_nodes_spline(route_SpacerniakGdansk, 'profile_wysokosciowe/2018_paths/SpacerniakGdansk.csv')
+
+    analyze_node_distribution_spline(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+    analyze_node_distribution_spline(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv', num_nodes=30)
+    analyze_num_nodes_spline(route_MountEverest, 'profile_wysokosciowe/2018_paths/MountEverest.csv')
+
+    analyze_node_distribution_spline(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
+    analyze_node_distribution_spline(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt', num_nodes=30)
+    analyze_num_nodes_spline(route_genoa_rapallo, 'profile_wysokosciowe/2018_paths/genoa_rapallo.txt')
 
